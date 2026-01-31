@@ -1,8 +1,9 @@
 const express = require("express")
 const noteModel = require("./models/note.model")
+const cors = require('cors')
 
 const app = express()
-
+app.use(cors())
 app.use(express.json())
 
 app.post('/api/notes', async(req,res)=>{
@@ -18,8 +19,6 @@ app.post('/api/notes', async(req,res)=>{
 })
 
 app.get('/api/notes', async(req,res)=>{
-    const{title,description} = req.body
-
     const notes = await noteModel.find() //this finds all data in ur collection and returns an array of data
 
     res.status(200).json({
