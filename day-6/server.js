@@ -5,7 +5,7 @@ const app = express();
 
 function connectToDB() {
   mongoose
-    .connect("mongodb+srv://akshvt:Akshat123@cluster0.n2qghld.mongodb.net/day-6")
+    .connect("process.env.MONGO_URI")
     .then(() => {
       console.log("Connected to Database");
     })
