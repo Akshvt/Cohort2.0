@@ -53,7 +53,7 @@ module.exports = app
 
 
 /* Additional Notes:
-CORS Policy: Ek browser Security Policy jo kehti hai ki ek jagah rehte hue dusri jagah request nhi bhej sakte ---> Cross Origin Requests not allows
+CORS Policy: Ek browser Security Policy jo kehti hai ki ek jagah rehte hue dusri jagah request nhi bhej sakte ---> Cross Origin Requests not allowed
 Here Our Frontend and Backend are both running on different PORTS => Different origins
 
 Eg:
