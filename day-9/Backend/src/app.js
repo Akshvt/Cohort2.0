@@ -50,3 +50,14 @@ app.patch('/api/notes/:id',async (req,res)=>{
 
 
 module.exports = app
+
+
+/* Additional Notes:
+CORS Policy: Ek browser Security Policy jo kehti hai ki ek jagah rehte hue dusri jagah request nhi bhej sakte ---> Cross Origin Requests not allows
+Here Our Frontend and Backend are both running on different PORTS => Different origins
+
+Eg:
+Hacker(xyz.com)===>Bank(sbi.com) ❌CORS Policy error
+To evade this on development site we use cors package
+app.use(cors())
+*/

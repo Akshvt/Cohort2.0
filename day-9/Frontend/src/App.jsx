@@ -8,11 +8,11 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:3000/api/notes')
       .then((res) => {
-         console.log("API RESPONSE 👉", res.data)
+         console.log("API RESPONSE ->", res.data)
         setNotes(res.data.notes)
       })
       .catch(err => console.error(err))
-  }, []) // 👈 empty dependency array
+  }, []) // empty dependency array
 
   return (
     <div className="notes">
