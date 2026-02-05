@@ -1,42 +1,44 @@
+/**
+ * server ko create
+ */
+
 const express = require("express")
 const noteModel = require("./models/note.model")
-const cors = require('cors')
+const cors = require("cors")
 const path = require("path")
 
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use(express.static("./public")) //this is going to make our public server 'PUBLIC' i.e accesible to the backend when index.html requests for js and css file
+app.use(express.static("./public"))
 
 /**
  * - POST /api/notes
  * - create new note and save data in mongodb
  * - req.body = {title,description}
  */
+app.post('/api/notes', async (req, res) => {
+    const { title, description } = req.body
 
-app.post('/api/notes', async(req,res)=>{
-    const{title,description} = req.body
-
-    const notes = await noteModel.create({
-        title,description
+    const note = await noteModel.create({
+        title, description
     })
 
     res.status(201).json({
-        message:"Notes created Successfully",
-        notes
+        message: "note created successfully",
+        note
     })
 })
-
 
 /**
  * - GET /api/notes
  * - Fetch all the notes data from mongodb and send them in the response
  */
-app.get('/api/notes', async(req,res)=>{
-    const notes = await noteModel.find() //this finds all data in ur collection and returns an array of data
+app.get("/api/notes", async (req, res) => {
+    const notes = await noteModel.find()
 
     res.status(200).json({
-        message:"Here are your Notes",
+        message: "Notes fetched successfully.",
         notes
     })
 })
@@ -45,13 +47,13 @@ app.get('/api/notes', async(req,res)=>{
  * - DELETE /api/notes/:id
  * - Delete note with the id from req.params
  */
-
-app.delete('/api/notes/:id', async(req,res)=>{
+app.delete('/api/notes/:id', async (req, res) => {
     const id = req.params.id
+
     await noteModel.findByIdAndDelete(id)
 
     res.status(200).json({
-        message:"Note deleted Successfully"
+        message: "Note deleted successfully."
     })
 })
 
@@ -60,23 +62,20 @@ app.delete('/api/notes/:id', async(req,res)=>{
  * - update the description of the note by id
  * - req.body = {description}
  */
-
-app.patch('/api/notes/:id',async (req,res)=>{
+app.patch('/api/notes/:id', async (req, res) => {
     const id = req.params.id
-    const{description} = req.body
+    const { description } = req.body
 
-   await noteModel.findByIdAndUpdate(id,{description})
+    await noteModel.findByIdAndUpdate(id, { description })
 
-   res.status(200).json({
-    message:"Updated your notes!"
-   })
+    res.status(200).json({
+        message: "Note updated successfully."
+    })
+
 })
 
 
-/* This is the wildcard operator, so this is used to respond to api calls that arent defined in backend..it handles them */
-app.use('*name',(req,res)=>{
-    res.sendFile(path.join(__dirname,"..","/public/index.html"))
-})
+
 
 
 module.exports = app
