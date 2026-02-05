@@ -10,15 +10,15 @@
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 
 html {
   background: radial-gradient(
-      circle at top left,
-      #2a2a2a,
-      #121212 60%
+    circle at top left,
+    #2a2a2a,
+    #121212 60%
   );
   font-family: system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
@@ -32,25 +32,29 @@ html {
 .note-create-form {
   display: flex;
   gap: 1rem;
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem;
   align-items: center;
+
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .note-create-form input {
   flex: 1;
-  padding: 0.7rem 0.9rem;
-  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
   color: #fff;
   font-size: 0.95rem;
   outline: none;
-  transition: border 0.25s, background 0.25s;
+  transition: all 0.25s ease;
 }
 
 .note-create-form input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .note-create-form input:focus {
@@ -59,8 +63,8 @@ html {
 }
 
 .note-create-form button {
-  padding: 0.7rem 1.2rem;
-  border-radius: 0.6rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 0.7rem;
   border: none;
   cursor: pointer;
   font-weight: 600;
@@ -71,7 +75,7 @@ html {
 
 .note-create-form button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.18);
 }
 
 .note-create-form button:active {
@@ -86,7 +90,7 @@ html {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
-  padding: 1rem 3rem 3rem;
+  padding: 2rem 3rem 3rem;
 }
 
 /* =========================
@@ -95,19 +99,17 @@ html {
 .note {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.7rem;
 
-  padding: 1.3rem 1.2rem;
-  border-radius: 1rem;
+  padding: 1.4rem 1.3rem;
+  border-radius: 1.1rem;
 
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
   border: 1px solid rgba(255, 255, 255, 0.12);
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -116,8 +118,8 @@ html {
 .note:hover {
   transform: translateY(-6px);
   box-shadow:
-    0 14px 45px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    0 18px 50px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* =========================
@@ -126,7 +128,7 @@ html {
 .note h2 {
   font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
 }
 
 .note p {
@@ -139,9 +141,9 @@ html {
    NOTE ACTION BUTTONS
 ========================= */
 .note button {
-  margin-top: 0.3rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: 0.5rem;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.55rem;
   border: none;
   cursor: pointer;
   font-size: 0.8rem;
@@ -150,7 +152,7 @@ html {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
 
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .note button:hover {
@@ -162,17 +164,17 @@ html {
   transform: translateY(0);
 }
 
-/* DELETE BUTTON (DANGER) */
+/* DELETE BUTTON */
 .note button:first-of-type {
-  background: rgba(255, 70, 70, 0.25);
+  background: rgba(255, 70, 70, 0.28);
 }
 
 .note button:first-of-type:hover {
-  background: rgba(255, 70, 70, 0.4);
+  background: rgba(255, 70, 70, 0.45);
 }
 
 /* =========================
-   RESPONSIVE POLISH
+   RESPONSIVE
 ========================= */
 @media (max-width: 600px) {
   .note-create-form,

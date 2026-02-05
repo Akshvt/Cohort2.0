@@ -70,7 +70,7 @@ function App() {
       {
         notes.map((note, index) => (
           <div className="note" key={index}>
-            <h1>{note.title}</h1>
+            <h2>{note.title}</h2>
             <p>{note.description}</p>
             <button onClick={()=>{handleDeleteNote(note._id)}}>delete</button>
             <button onClick={()=>{handleUpdateNote(note)}}>Update note</button>
