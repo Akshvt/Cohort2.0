@@ -13,7 +13,7 @@ authRouter.post("/register", async(req,res)=>{
     const isUserAlreadyExists = await userModel.findOne({email})
 
     if(isUserAlreadyExists){
-        return res.status(400).json({ //Task : Find if 400 or 409?
+        return res.status(400).json({ //Task : Find if 400 or 409? => 409 (Check notes)
             message: "User already exists with this email address"
         })
     }
