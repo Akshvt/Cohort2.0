@@ -1,25 +1,9 @@
-1. Created user model and schema, made email unique
-2. Created routes file
-{
-    -express.Router
-    -jwtwebtokens
-    -post(/"register"){
-        create user
-        isUserAlreadyExists(true || false) .findOne(email) => noteModel will return based on noteSchema
-        token = jwt.sign //Token created + signed using JWT-SECRET (jwtsecrets.com)
-        
-    }
-    
-}
-3. 'cookie-parser' package installed & save token in cookie
+1. Created /protected api to log all the existing cookies/protected routes
+2. Created a /login api to check if user  with a particular email exists in db (if not then we send 404) if yes then we check if the password matches the one in db (else we send 404) ELSE we sign a token
 
-4. Cookies Storage : Server can access and read the data in it. Present in every browser
-server will read the token from cookies storage automatically, so we dont need to hardcode it
+3. Password Hashing -> to prevent loss due to data leaking => Use md5 generator
 
-5. Status Codes 400 vs 409: 
--> 400 Bad Request is used when the client sends invalid or malformed data (missing fields, wrong format, failed validation).
--> 409 Conflict is used when the request is valid, but cannot be processed because it conflicts with existing server state (e.g., user already exists).
+mypassword ---> hashing ---> longlonglonghashedstring (same input = same output each time)
+(plain text)         ------>         (hash)          (also its one way.. cant use hash to get its plain text)
 
-Rule of thumb:
-Invalid input → 400
-Valid input but duplicate/conflict → 409
+Aisa callback jo tab chalta h jab koi api fetch ho
