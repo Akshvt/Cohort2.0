@@ -1,0 +1,47 @@
+
+! FEATURES !
+
+
+===> Authentication
+
+  ==> Register (1.User ka data save krna 2. Token user ko dena)
+  ==> Login
+  ==> logout (Token Blacklisting)
+  ==> [OTP based Registration] --> At the end
+
+===> Post
+
+  ==> Create
+  ==> Can see the feed
+  ==> Like posts (Collection Types)
+  ==> Save Posts
+
+===> Users
+
+  ==> Followers
+  ==> Following
+
+
+
+  Imagekit --> image cloud storage
+
+
+  user = {
+    username:String,
+    email:String,
+    password:String,
+    bio:String,
+    followers:Array,
+    profile_image:String
+}
+
+
+packages installed:
+
+express
+mongoose
+dotenv
+jwtwebtoken
+cookie-parser
+crypto(preinstalled)
+express.authRouter
