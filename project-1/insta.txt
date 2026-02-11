@@ -35,6 +35,12 @@
     profile_image:String
 }
 
+ post = {
+  caption:String,
+  img_url:Stringuser:userId,
+  createdAt: Date-time,
+ }
+
 
 packages installed:
 
@@ -45,3 +51,12 @@ jwtwebtoken
 cookie-parser
 crypto(preinstalled)
 express.authRouter
+
+bcrypt
+multer
+
+
+In multer: 
+2 types of storages :
+ 1. DiskStorage (we never store data in server bc very costly)
+ 2. Memory Storage (Temportary storage on server --> AWS ---> server deletes file, its now on AWS)
