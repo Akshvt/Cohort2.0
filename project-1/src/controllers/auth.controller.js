@@ -1,9 +1,10 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const userModel = require('../models/user.model')
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+
 
 async function registerController(req,res){
-    authRouter.post('/register', async(req,res)=>{
+    
     const {email,username,password,bio,profileImage} = req.body
 
 /*     const isUserExistingByEmail = await userModel.findOne({email})
@@ -25,21 +26,19 @@ async function registerController(req,res){
     This is inefficient since database calls are being made Twice*/
 
         const isUserExisting = await userModel.findOne({
-            $or: //“Match a document if ANY ONE of these conditions in array is true.”
-            [
-                {username},
-                {email}
+            $or: [
+                {email},
+                {username}
             ]
         })
 
-        if (isUserExisting){
-            return res.status(409).json({
-                message: "User is already existing" + 
-                (isUserExisting.email) == email ? "Email already exists" : "Username already exists"
+        if(isUserExisting){
+            res.status(409).json({
+                message:"User Already Existing, " + (isUserExisting.email == email ? "Email already exists" : "Username already exists")
             })
         }
 
-        const hash = bcrypt.hash(password,10)
+        const hash = await bcrypt.hash(password,10) // number = salt value : kitni baar hashing karni hai
 
         const user = await userModel.create({
             username,
@@ -55,11 +54,11 @@ async function registerController(req,res){
             
             */  
 
-        const token = jwt.sign({
-           id:user.id},
-        process.env.JWT_SECRET, {expiredIn: "1d"})
+        const token = jwt.sign(
+            {id:user._id}, process.env.JWT_SECRET, {expiresIn: "1d"}
+        )
 
-        res.cookie("token", token) //stored the token in cookuie for sevrer to acccess
+        res.cookie("token", token) //stored the token in cookie for sevrer to access
 
         res.status(201).json({
             message: "User registered Successfully",
@@ -72,12 +71,11 @@ async function registerController(req,res){
                 //never share the password in frontend
             }
         })
-}) 
 }
 
 
 async function loginController(req,res){
-    authRouter.post("/login", async (req,res) =>{
+    
     const  { username, email, password} = req.body
     /* 
     
@@ -112,9 +110,10 @@ async function loginController(req,res){
         })
     }
 
-    const hash = await bcrypt.hash(password,10) // number = salt value : kitni baar hashing karni hai
+    
 
     const isPasswordValid = await bcrypt.compare(password,user.password)
+
     if(!isPasswordValid){
         return res.status(401).json({
             message:"Password Invalid"
@@ -125,16 +124,19 @@ async function loginController(req,res){
         {id: user._id},process.env.JWT_SECRET, {expiresIn : "1d"}
     )
 
+    res.cookie("token", token)
+
     res.status(200).json({
         message: "User loggedIn Successfully.",
         user: {
             username: user.username,
             email:user.email,
+            bio: user.bio,
             profileImage: user.profileImage,
 
         }
     })
-})
+
 }
 
 
