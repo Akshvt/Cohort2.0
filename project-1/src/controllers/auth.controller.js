@@ -38,7 +38,7 @@ async function registerController(req,res){
             })
         }
 
-        const hash = await bcrypt.hash(password,10) // number = salt value : kitni baar hashing karni hai
+        const hash = bcrypt.hash(password,10) // number = salt value : kitni baar hashing karni hai
 
         const user = await userModel.create({
             username,
@@ -53,7 +53,6 @@ async function registerController(req,res){
             data unique hona chaiye
             
             */  
-
         const token = jwt.sign(
             {id:user._id}, process.env.JWT_SECRET, {expiresIn: "1d"}
         )
