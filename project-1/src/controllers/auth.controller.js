@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 
+
 async function registerController(req,res){
     
     const {email,username,password,bio,profileImage} = req.body
@@ -54,7 +55,7 @@ async function registerController(req,res){
             
             */  
         const token = jwt.sign(
-            {id:user._id}, process.env.JWT_SECRET, {expiresIn: "1d"}
+            {id:user._id, username:user.username}, process.env.JWT_SECRET, {expiresIn: "1d"}
         )
 
         res.cookie("token", token) //stored the token in cookie for sevrer to access
@@ -120,7 +121,7 @@ async function loginController(req,res){
     }
 
     const token = jwt.sign(
-        {id: user._id},process.env.JWT_SECRET, {expiresIn : "1d"}
+        {id: user._id, username:user.username}, process.env.JWT_SECRET, {expiresIn : "1d"}
     )
 
     res.cookie("token", token)
@@ -137,6 +138,7 @@ async function loginController(req,res){
     })
 
 }
+
 
 
 module.exports = {loginController,registerController}

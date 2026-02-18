@@ -1,30 +1,28 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    username:{
+    username: {
         type: String,
-        unique: [true, "User name already existing"],
-        required: [true, "User name is required"]
+        unique: [ true, "User name already exists" ],
+        required: [ true, "User name is required" ]
     },
-
-    email : {
+    email: {
         type: String,
-        unique: [true, "email already existing"],
-        required: [true, "email name is required"]
+        unique: [ true, "Email already exists" ],
+        required: [ true, "Email is required" ]
     },
-
     password: {
         type: String,
-        required : [true, "Password is required"]
+        required: [ true, "Password is required" ]
     },
-
-    bio :String,
+    bio: String,
     profileImage: {
-        type:String,
-        default: "https://ik.imagekit.io/akshvt/defzult.webp",
-    }
+        type: String,
+        default: "https://ik.imagekit.io/hnoglyswo0/avatar-gender-neutral-silhouette-vector-600nw-2470054311.webp"
+    },
 })
+
 
 const userModel = mongoose.model("users", userSchema)
 
-module.exports = userModel;
+module.exports = userModel
