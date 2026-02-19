@@ -84,14 +84,26 @@ async function getPostDetailsController(req, res) {
 
 async function likePostController(req, res) {
 
-    const username = req.user.username
-    const postId = req.params.postId
+    const username = req.user.username //kon like kar raha hai
+    const postId = req.params.postId //Jo post like karni hai uski id
 
     const post = await postModel.findById(postId)
 
     if (!post) {
         return res.status(404).json({
             message: "Post not found."
+        })
+    }
+
+    const isAlreadyLiking = await likeModel.findOne({
+        post:postId,
+        user:username
+    })
+
+    if(isAlreadyLiking){
+        res.status(200).json({
+            message: "You have already liked the post",
+            like: isAlreadyLiking
         })
     }
 

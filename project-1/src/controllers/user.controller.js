@@ -5,8 +5,8 @@ const userModel = require("../models/user.model")
 
 async function followUserController(req, res) {
 
-    const followerUsername = req.user.username
-    const followeeUsername = req.params.username
+    const followerUsername = req.user.username //Jo follow kar raha hai
+    const followeeUsername = req.params.username //Jisko follow karna hai
 
 
     if (followeeUsername == followerUsername) {
