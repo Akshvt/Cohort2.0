@@ -18,8 +18,8 @@ userRouter.post("/follow/:username", identifyUser, userController.followUserCont
  * @description Unfollow a user
  * @access Private
  */
-userRouter.post("/unfollow/:username", identifyUser, userController.r)
-unfollowUserControlle
+userRouter.post("/unfollow/:username", identifyUser, userController.
+unfollowUserController)
 
 
 
