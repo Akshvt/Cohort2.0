@@ -1,20 +1,17 @@
-/login => login form
-/register => regristration form
+==> UI
+  -> UI dikhana usr ko or navigate karna
 
-4 Layers of React Architecture
-------------------------------
-=> UI
-  -> UI dikhana user ko or navigate karna
+==> Hook
+  -> Manages State and API layers
 
-=> Hook
- -> manage karna State and Api layer
 
-=> State (Kinda like data/context)
- -> State manage
+==> State --> Storage
+  -> State manage karna
    >loading
    >user
-   >post list
+   >posts list
    >error
 
-=> API
- -> backend se communicate karna
+
+==> API
+  -> Backend se communicate karna
